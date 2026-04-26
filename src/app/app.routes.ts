@@ -5,6 +5,6 @@ export const routes: Routes = [
   {
     path: '',
     component: SheepMonitoringPageComponent,
-    title: 'GanadoTech | Sheep Monitoring',
+    title: 'GanadoTech | Sheep Counter',
   },
 ];

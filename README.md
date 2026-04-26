@@ -1,59 +1,68 @@
-# GanadotechPwaFe
+# GanadoTech Sheep Counter SPA
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.6.
+Simple mobile-first SPA for sheep counting with a local video simulation.
 
-## Development server
+## Product rules
 
-To start a local development server, run:
+- Mobile first by default. Every new screen starts from the small-screen layout and only then scales up.
+- Single-page application. Keep the experience simple and focused.
+- Only these counters exist in the product:
+  - `Machos`
+  - `Hembras`
+  - `Nuevas crias`
+  - `En celo`
+  - `Enfermos`
 
-```bash
-ng serve
-```
+## Current behavior
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- The app uses `public/ganadotech.mp4` as the simulated pen video.
+- Counter values are produced from a simple application use case that rotates through predefined scenarios as the video advances.
+- The UI is intentionally minimal: one video card and one counter card.
 
-## Code scaffolding
+## Architecture
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+The code follows four layers under `src/app`:
 
-```bash
-ng generate component component-name
-```
+- `presentation`
+  - Angular page and styles for the SPA.
+- `application`
+  - Facade and use case that transform video time into counter data.
+- `domain`
+  - Counter models and the source port.
+- `infrastructure`
+  - Concrete implementation that serves the local video simulation.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Important files
 
-```bash
-ng generate --help
-```
+- `src/app/presentation/pages/sheep-monitoring/`
+- `src/app/application/use-cases/generate-sheep-monitoring-snapshot.use-case.ts`
+- `src/app/application/services/sheep-monitoring.facade.ts`
+- `src/app/domain/models/sheep-monitoring.models.ts`
+- `src/app/domain/ports/sheep-monitoring-source.port.ts`
+- `src/app/infrastructure/video/demo-video-monitoring.source.ts`
 
-## Building
+## Development
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+Install dependencies:
 
 ```bash
-ng e2e
+npm install
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Run the app locally:
 
-## Additional Resources
+```bash
+npm start
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Build for production:
+
+```bash
+npm run build
+```
+
+Run tests:
+
+```bash
+npm test -- --watch=false
+```

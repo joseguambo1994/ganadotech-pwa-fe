@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { SheepMonitoringSnapshot } from '../../domain/models/sheep-monitoring.models';
+import { SheepCounterSnapshot } from '../../domain/models/sheep-monitoring.models';
 import { SheepMonitoringSourcePort } from '../../domain/ports/sheep-monitoring-source.port';
 import { GenerateSheepMonitoringSnapshotUseCase } from '../use-cases/generate-sheep-monitoring-snapshot.use-case';
 
@@ -16,11 +16,11 @@ export class SheepMonitoringFacade {
     return this.source.getPosterSource();
   }
 
-  buildInitialSnapshot(): SheepMonitoringSnapshot {
+  buildInitialSnapshot(): SheepCounterSnapshot {
     return this.generateSnapshot.execute(this.source.getInitialFrameContext());
   }
 
-  buildSnapshot(currentTimeInSeconds: number, durationInSeconds: number): SheepMonitoringSnapshot {
+  buildSnapshot(currentTimeInSeconds: number, durationInSeconds: number): SheepCounterSnapshot {
     const frame = this.source.buildFrameContext(currentTimeInSeconds, durationInSeconds);
     return this.generateSnapshot.execute(frame);
   }
