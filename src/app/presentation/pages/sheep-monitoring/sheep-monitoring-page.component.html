@@ -1,0 +1,161 @@
+<div class="monitoring-shell">
+  <header class="hero-panel">
+    <div class="hero-copy">
+      <div class="eyebrow">GanadoTech livestock intelligence</div>
+      <h1>Sheep monitoring built for pasture operations, not generic dashboards.</h1>
+      <p>
+        This PWA now simulates flock supervision with the local
+        <code>ganadotech.mp4</code> clip while keeping the code split into
+        presentation, application, domain, core, and infrastructure layers.
+      </p>
+
+      <div class="hero-stats">
+        <article class="hero-stat">
+          <span>Total flock</span>
+          <strong>{{ snapshot().totalSheep }}</strong>
+        </article>
+        <article class="hero-stat">
+          <span>Visible now</span>
+          <strong>{{ snapshot().visibleSheep }}</strong>
+        </article>
+        <article class="hero-stat">
+          <span>Coverage</span>
+          <strong>{{ visibleRatio() }}%</strong>
+        </article>
+      </div>
+    </div>
+
+    <aside class="brand-card">
+      <img src="/ganadotech.png" alt="GanadoTech mark" class="brand-mark" />
+      <div>
+        <p class="brand-label">{{ snapshot().herdLabel }}</p>
+        <h2>{{ snapshot().streamLabel }}</h2>
+      </div>
+      <div class="stream-badge">{{ playbackLabel() }}</div>
+      <p class="stream-meta">{{ snapshot().streamHealth }} · {{ snapshot().lastUpdatedLabel }}</p>
+    </aside>
+  </header>
+
+  <main class="dashboard-grid">
+    <section class="video-panel">
+      <div class="panel-heading">
+        <div>
+          <span class="section-tag">Simulated field feed</span>
+          <h2>Pasture camera stream</h2>
+        </div>
+        <div class="control-row">
+          <button type="button" class="control-button" (click)="togglePlayback(monitoringVideo)">
+            {{ isPlaying() ? 'Pause' : 'Play' }}
+          </button>
+          <button type="button" class="control-button control-button--secondary" (click)="restart(monitoringVideo)">
+            Restart
+          </button>
+        </div>
+      </div>
+
+      <video
+        #monitoringVideo
+        class="monitoring-video"
+        [poster]="posterSource"
+        [src]="videoSource"
+        autoplay
+        muted
+        loop
+        playsinline
+        controls
+        (loadedmetadata)="handleMetadata(monitoringVideo)"
+        (timeupdate)="handleTimeUpdate(monitoringVideo)"
+        (play)="handlePlay()"
+        (pause)="handlePause()"
+      ></video>
+
+      <div class="video-caption">
+        <p>
+          The video feed is local for now. Replace the infrastructure source with the real camera
+          endpoint when the live paddock stream is ready.
+        </p>
+      </div>
+    </section>
+
+    <section class="metrics-panel">
+      <div class="panel-heading">
+        <div>
+          <span class="section-tag">Operational health</span>
+          <h2>Monitoring metrics</h2>
+        </div>
+      </div>
+
+      <div class="metrics-grid">
+        @for (metric of snapshot().metrics; track trackMetric($index, metric)) {
+          <article class="metric-card" [attr.data-severity]="metric.severity">
+            <div class="metric-topline">
+              <span>{{ metric.label }}</span>
+              <span class="trend-pill">{{ metric.trend }}</span>
+            </div>
+            <strong>{{ metric.value }}</strong>
+            <p>{{ metric.detail }}</p>
+          </article>
+        }
+      </div>
+    </section>
+
+    <section class="alerts-panel">
+      <div class="panel-heading">
+        <div>
+          <span class="section-tag">Response queue</span>
+          <h2>Flock alerts</h2>
+        </div>
+      </div>
+
+      <div class="alert-stack">
+        @for (alert of snapshot().alerts; track trackAlert($index, alert)) {
+          <article class="alert-card" [attr.data-severity]="alert.severity">
+            <div class="alert-title-row">
+              <h3>{{ alert.title }}</h3>
+              <span class="severity-pill">{{ alert.severity }}</span>
+            </div>
+            <p>{{ alert.detail }}</p>
+            <strong>{{ alert.action }}</strong>
+          </article>
+        }
+      </div>
+    </section>
+
+    <section class="paddocks-panel">
+      <div class="panel-heading">
+        <div>
+          <span class="section-tag">Paddock review</span>
+          <h2>Zone insights</h2>
+        </div>
+      </div>
+
+      <div class="paddock-grid">
+        @for (paddock of snapshot().paddocks; track trackPaddock($index, paddock)) {
+          <article class="paddock-card" [attr.data-severity]="paddock.condition">
+            <div class="paddock-header">
+              <h3>{{ paddock.zone }}</h3>
+              <span>{{ paddock.occupancy }}</span>
+            </div>
+            <p>{{ paddock.vegetation }}</p>
+            <p>{{ paddock.waterAccess }}</p>
+          </article>
+        }
+      </div>
+    </section>
+
+    <section class="recommendations-panel">
+      <div class="panel-heading">
+        <div>
+          <span class="section-tag">Recommended actions</span>
+          <h2>Next steps</h2>
+        </div>
+      </div>
+
+      <ol class="recommendation-list">
+        @for (item of snapshot().recommendations; track item) {
+          <li>{{ item }}</li>
+        }
+      </ol>
+    </section>
+  </main>
+</div>
