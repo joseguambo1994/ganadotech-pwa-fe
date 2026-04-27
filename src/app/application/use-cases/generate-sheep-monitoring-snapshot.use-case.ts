@@ -26,8 +26,6 @@ export class GenerateSheepMonitoringSnapshotUseCase {
 
     return {
       title: 'Sheep Counter',
-      subtitle: 'Simple mobile SPA for male, female, newborn, heat and sick counters.',
-      videoLabel: 'Local video simulation',
       lastUpdatedLabel: `Frame ${frame.elapsedLabel}`,
       detectedSheep,
       counters,

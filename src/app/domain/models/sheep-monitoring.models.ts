@@ -17,8 +17,6 @@ export interface SheepCounterItem {
 
 export interface SheepCounterSnapshot {
   title: string;
-  subtitle: string;
-  videoLabel: string;
   lastUpdatedLabel: string;
   detectedSheep: number;
   counters: SheepCounterItem[];

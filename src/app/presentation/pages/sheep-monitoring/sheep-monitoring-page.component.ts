@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { SheepMonitoringFacade } from '../../../application/services/sheep-monitoring.facade';
 import { SheepCounterItem, SheepCounterSnapshot } from '../../../domain/models/sheep-monitoring.models';
 
@@ -15,7 +15,6 @@ export class SheepMonitoringPageComponent {
   );
   protected readonly videoSource = this.monitoringFacade.getVideoSource();
   protected readonly posterSource = this.monitoringFacade.getPosterSource();
-  protected readonly detectedSheepLabel = computed(() => `${this.snapshot().detectedSheep} detectadas`);
 
   protected handleMetadata(video: HTMLVideoElement): void {
     this.refreshSnapshot(video);
