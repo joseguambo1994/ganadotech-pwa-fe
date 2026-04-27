@@ -5,8 +5,8 @@ export interface VideoFrameContext {
   elapsedLabel: string;
 }
 
-export type SheepCounterId = 'male' | 'female' | 'newborn' | 'inHeat' | 'sick';
-export type SheepCounterTone = 'blue' | 'pink' | 'amber' | 'green' | 'red';
+export type SheepCounterId = 'male' | 'female' | 'newborn' | 'inHeat' | 'sick' | 'forSale';
+export type SheepCounterTone = 'blue' | 'pink' | 'amber' | 'green' | 'red' | 'brown';
 
 export interface SheepCounterItem {
   id: SheepCounterId;
