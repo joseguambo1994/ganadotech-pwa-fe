@@ -1,19 +1,15 @@
 <div class="counter-shell">
-  <header class="intro-card">
-    <div class="brand-row">
-      <img src="/ganadotech.png" alt="GanadoTech mark" class="brand-mark" />
-      <div>
-        <p class="eyebrow">GanadoTech SPA</p>
-        <h1>{{ snapshot().title }}</h1>
-      </div>
-    </div>
-  </header>
-
   <main class="counter-content">
     <section class="video-card">
-      <div class="section-head">
-        <h2>Vista del corral</h2>
-        <span>{{ snapshot().lastUpdatedLabel }}</span>
+      <div class="brand-head">
+        <div class="brand-row">
+          <img src="/ganadotech.png" alt="GanadoTech mark" class="brand-mark" />
+          <div>
+            <p class="eyebrow">GanadoTech SPA</p>
+            <h1>{{ snapshot().title }}</h1>
+          </div>
+        </div>
+        <span class="brand-meta">{{ snapshot().lastUpdatedLabel }}</span>
       </div>
 
       <video

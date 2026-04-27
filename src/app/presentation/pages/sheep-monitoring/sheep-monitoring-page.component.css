@@ -23,7 +23,6 @@
   color: var(--ink-900);
 }
 
-.intro-card,
 .video-card,
 .counter-card {
   background: var(--cream-300);
@@ -32,16 +31,18 @@
   box-shadow: 0 14px 30px rgba(44, 30, 18, 0.08);
 }
 
-.intro-card {
-  max-width: 32rem;
-  margin: 0 auto 1rem;
-  padding: 1.1rem;
-}
-
 .brand-row {
   display: flex;
   align-items: center;
   gap: 0.9rem;
+}
+
+.brand-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .brand-mark {
@@ -56,23 +57,29 @@
 
 .eyebrow {
   margin: 0 0 0.2rem;
-  font-size: 0.72rem;
+  font-size: 0.64rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 700;
   color: var(--soil-700);
 }
 
-.intro-card h1,
+.brand-head h1,
 .section-head h2 {
   margin: 0;
   font-family: 'Fraunces', 'Georgia', serif;
   color: var(--soil-950);
 }
 
-.intro-card h1 {
-  font-size: 2rem;
-  line-height: 1;
+.brand-head h1 {
+  font-size: 1.28rem;
+  line-height: 0.98;
+}
+
+.brand-meta {
+  font-size: 0.72rem;
+  color: var(--ink-700);
+  white-space: nowrap;
 }
 
 .counter-content {
@@ -96,7 +103,7 @@
 }
 
 .section-head span {
-  font-size: 0.82rem;
+  font-size: 0.72rem;
   color: var(--ink-700);
 }
 
@@ -110,6 +117,7 @@
 
 .counter-list {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.8rem;
 }
 
@@ -117,9 +125,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0.9rem;
-  padding: 0.95rem 1rem;
-  border-radius: 20px;
+  gap: 0.55rem;
+  padding: 0.62rem 0.72rem;
+  border-radius: 16px;
   background: var(--cream-200);
   border: 1px solid rgba(44, 30, 18, 0.08);
 }
@@ -127,32 +135,35 @@
 .counter-label-group {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 0.45rem;
   min-width: 0;
+  flex: 1 1 auto;
 }
 
 .counter-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.6rem;
-  height: 2.6rem;
+  width: 1.8rem;
+  height: 1.8rem;
   border-radius: 999px;
-  font-size: 1rem;
+  font-size: 0.72rem;
   font-weight: 800;
   flex: 0 0 auto;
 }
 
 .counter-label {
-  font-size: 1rem;
+  font-size: 0.62rem;
   font-weight: 700;
   color: var(--soil-950);
+  line-height: 1.1;
 }
 
 .counter-value {
   font-family: 'Fraunces', 'Georgia', serif;
-  font-size: 2rem;
+  font-size: 1.05rem;
   line-height: 1;
+  flex: 0 0 auto;
 }
 
 [data-tone='blue'] .counter-badge,
@@ -205,7 +216,6 @@
     padding: 1.5rem;
   }
 
-  .intro-card,
   .counter-content {
     max-width: 68rem;
   }
@@ -215,11 +225,7 @@
     align-items: start;
   }
 
-  .intro-card {
-    padding: 1.4rem;
-  }
-
-  .intro-card h1 {
-    font-size: 2.35rem;
+  .brand-head h1 {
+    font-size: 1.55rem;
   }
 }
