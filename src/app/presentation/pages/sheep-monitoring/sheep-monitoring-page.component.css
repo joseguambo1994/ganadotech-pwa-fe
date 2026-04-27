@@ -56,13 +56,13 @@
 }
 
 .brand-mark {
-  width: 3.75rem;
-  height: 3.75rem;
+  width: 4.2rem;
+  height: 4.2rem;
   flex: 0 0 auto;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 16px;
   background: rgba(24, 49, 26, 0.05);
-  padding: 0.4rem;
+  padding: 0.15rem;
 }
 
 .eyebrow {
@@ -127,6 +127,56 @@
   border-radius: 22px;
   object-fit: cover;
   background: #c8d2c1;
+}
+
+.video-frame {
+  position: relative;
+}
+
+.video-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(238, 241, 231, 0.96), rgba(226, 231, 219, 0.98));
+  text-align: center;
+}
+
+.loading-mark {
+  width: 4rem;
+  height: 4rem;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(24, 49, 26, 0.12));
+}
+
+.loading-copy {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.loading-copy strong {
+  font-size: 0.9rem;
+  color: var(--forest-950);
+}
+
+.loading-copy span {
+  font-size: 0.72rem;
+  color: var(--ink-700);
+}
+
+.loading-spinner {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  border: 2px solid rgba(55, 102, 58, 0.18);
+  border-top-color: var(--leaf-500);
+  animation: spin 0.8s linear infinite;
 }
 
 .counter-list {
@@ -262,6 +312,12 @@
 
 [data-tone='brown'] .counter-value {
   color: #ff9c33;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (min-width: 760px) {

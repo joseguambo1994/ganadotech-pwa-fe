@@ -12,19 +12,32 @@
         <span class="brand-meta">{{ snapshot().lastUpdatedLabel }}</span>
       </div>
 
-      <video
-        #monitoringVideo
-        class="monitoring-video"
-        [poster]="posterSource"
-        [src]="videoSource"
-        autoplay
-        muted
-        loop
-        playsinline
-        controls
-        (loadedmetadata)="handleMetadata(monitoringVideo)"
-        (timeupdate)="handleTimeUpdate(monitoringVideo)"
-      ></video>
+      <div class="video-frame">
+        @if (isVideoLoading()) {
+          <div class="video-loading" aria-live="polite">
+            <img src="/ganadotech.png" alt="" class="loading-mark" />
+            <div class="loading-copy">
+              <strong>Cargando video</strong>
+              <span>Preparando monitoreo automatico</span>
+            </div>
+            <span class="loading-spinner" aria-hidden="true"></span>
+          </div>
+        }
+
+        <video
+          #monitoringVideo
+          class="monitoring-video"
+          [src]="videoSource"
+          autoplay
+          muted
+          loop
+          playsinline
+          controls
+          (loadedmetadata)="handleMetadata(monitoringVideo)"
+          (canplay)="handleCanPlay(monitoringVideo)"
+          (timeupdate)="handleTimeUpdate(monitoringVideo)"
+        ></video>
+      </div>
     </section>
 
     <section class="counter-card">
